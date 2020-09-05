@@ -1,48 +1,45 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from 'redux-thunk'
-// import dashboard from "./reducers/Dashboard/Dashboard";
-// import sales from "./reducers/Sales/Sales";
+import app from "./reducer/App";
 
-// function saveToLocalStorage(state){
-//     try {
-//         const serializedState = JSON.stringify(state)
-//         localStorage.setItem('state', serializedState)
-//     }catch (e) {
-//         console.log(e)
-//     }
-// }
-//
-// function loadFromLocalStorage(){
-//     try {
-//         const serializedState = localStorage.getItem('state')
-//         if(!serializedState) {
-//             return undefined
-//         }
-//         return JSON.parse(serializedState)
-//     }catch (e) {
-//         console.log(e)
-//         return undefined
-//     }
-// }
+function saveToLocalStorage(state){
+    try {
+        const serializedState = JSON.stringify(state)
+        localStorage.setItem('state', serializedState)
+    }catch (e) {
+        console.log(e)
+    }
+}
 
-// const persistedState = loadFromLocalStorage()
+function loadFromLocalStorage(){
+    try {
+        const serializedState = localStorage.getItem('state')
+        if(!serializedState) {
+            return undefined
+        }
+        return JSON.parse(serializedState)
+    }catch (e) {
+        console.log(e)
+        return undefined
+    }
+}
+
+const persistedState = loadFromLocalStorage()
 
 const reducer = combineReducers({
-    // dashboard,
-    // sales
+    app,
 })
 
 const middleware = applyMiddleware(thunk);
 
 const store = createStore(
     reducer,
-    // persistedState,
+    persistedState,
     middleware
 );
 
-// store.subscribe(() => saveToLocalStorage({
-//     dashboard: store.getState().dashboard,
-//     sales: store.getState().sales
-// }))
+store.subscribe(() => saveToLocalStorage({
+    app: store.getState().app,
+}))
 
 export default store;

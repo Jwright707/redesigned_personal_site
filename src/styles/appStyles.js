@@ -14,7 +14,7 @@ export const appStyles = () => ({
         padding: 6
     },
     iconContainer: {
-        position: 'absolute',
+        position: 'fixed',
         margin: `10px 0 0 10px`
     }
 })

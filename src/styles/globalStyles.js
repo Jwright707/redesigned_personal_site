@@ -7,4 +7,3 @@ export const standardFontColor = '#000000';
 
 export const sourceCodePro = 'Source Code Pro';
 export const josefinSlab = 'Josefin Slab';
-
