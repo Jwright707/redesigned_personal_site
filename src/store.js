@@ -1,6 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from 'redux-thunk'
 import app from "./reducer/App";
+import dashboard from "./reducer/Dashboard";
 
 function saveToLocalStorage(state){
     try {
@@ -28,6 +29,7 @@ const persistedState = loadFromLocalStorage()
 
 const reducer = combineReducers({
     app,
+    dashboard,
 })
 
 const middleware = applyMiddleware(thunk);

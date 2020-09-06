@@ -6,16 +6,19 @@ import {dashboardStyles} from "../styles/dashboardStyles";
 import {Typography, Zoom} from "@material-ui/core";
 import PersonalImage from '../assets/images/imagejpeg_3_01.jpg';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {darkBlue, navyBlue} from "../styles/globalStyles";
 import Food_Backpack from '../assets/images/foodbackpack_logo.png';
 import Trip_Quest from '../assets/images/lake-between-1337608.jpg';
 import Autobiographical from '../assets/images/69518727_2636667863042663_1069526786045378560_n.jpg';
 import Tooltip from '@material-ui/core/Tooltip';
+import {updateProjectSelected} from "../actions/Dashboard";
 
 export default function Dashboard(props){
+    const {history} = props;
     const classes = makeStyles(theme => dashboardStyles(theme))()
     const {topArrow, bottomArrow} = useSelector(state => state.app)
+    const dispatch = useDispatch();
     useLayoutEffect(() => {
         document.getElementById('arrowDown').animate([
             { opacity: 1 },
@@ -99,7 +102,13 @@ export default function Dashboard(props){
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Tooltip TransitionComponent={Zoom} arrow title={"Learn More"}>
-                                            <img src={mapHelper[project]} className={classes.eachProjectImage}/>
+                                            <img src={mapHelper[project]}
+                                                 className={classes.eachProjectImage}
+                                                 onClick={() => {
+                                                     updateProjectSelected(project, dispatch)
+                                                     history.push('/projects')
+                                                 }}
+                                            />
                                         </Tooltip>
                                     </Grid>
                                 </Grid>

@@ -9,10 +9,13 @@ import IconButton from "@material-ui/core/IconButton";
 import LinkIcons from "./Components/LinkIcons";
 import {useDispatch, useSelector} from "react-redux";
 import {bottomArrowUpdate, topArrowUpdate} from "./actions/App";
+import Projects from "./Projects/Projects";
+import Navbar from "./Components/Navbar";
 
 export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()
     const {topArrow, bottomArrow} = useSelector(state => state.app);
+    const [open, setOpen] = useState(false)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,11 +40,13 @@ export default function App() {
     return (
       <Router history={history}>
           <div className={classes.root}>
-              <IconButton className={classes.iconContainer}>
+              <IconButton className={classes.iconContainer} onClick={() => setOpen(!open)}>
                   <MenuIcon className={classes.menuIcon}/>
               </IconButton>
+              {open && <Navbar open={open} setOpen={setOpen}/>}
               <Switch>
                   <Route exact path='/' component={Dashboard} history={history}/>
+                  <Route exact path='/projects' component={Projects} history={history}/>
               </Switch>
               <LinkIcons/>
           </div>
