@@ -1,6 +1,6 @@
 import {sourceCodePro, josefinSlab} from "./globalStyles";
 
-export const dashboardStyles = (theme) => ({
+export const projectStyles = (theme) => ({
     root: {
         display: "flex",
     },
@@ -25,7 +25,7 @@ export const dashboardStyles = (theme) => ({
         zIndex: 2,
         position: 'fixed',
         fontFamily: sourceCodePro,
-        color: 'white',
+        color: 'black',
         margin: `100px 0 0 0`,
         [theme.breakpoints.up('xl')]: {
             fontSize: '80px',
@@ -38,6 +38,20 @@ export const dashboardStyles = (theme) => ({
         fontWeight: 600,
         width: '80%',
         textAlign: 'center',
+    },
+    leftSideDescription2: {
+        fontSize: '1.6vw',
+        lineHeight: 1.8,
+        fontFamily: josefinSlab,
+        width: '80%',
+    },
+    viewStructure: {
+        fontSize: '1.2vw',
+        lineHeight: 1.8,
+        fontFamily: josefinSlab,
+        width: '80%',
+        textDecoration: 'none',
+        color: 'black'
     },
     projectsSectionContainer: {
         minHeight: '100vh',

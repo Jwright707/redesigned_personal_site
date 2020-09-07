@@ -1,21 +1,21 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import history from "./history";
 import Dashboard from "./Dashboard/Dashboard";
 import {makeStyles} from "@material-ui/core/styles";
 import {appStyles} from "./styles/appStyles";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from "@material-ui/core/IconButton";
 import LinkIcons from "./Components/LinkIcons";
 import {useDispatch, useSelector} from "react-redux";
-import {bottomArrowUpdate, topArrowUpdate} from "./actions/App";
+import {bottomArrowUpdate, topArrowUpdate, updateNavbar} from "./actions/App";
 import Projects from "./Projects/Projects";
 import Navbar from "./Components/Navbar";
+import Contact from "./Contact/Contact";
 
 export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()
-    const {topArrow, bottomArrow} = useSelector(state => state.app);
-    const [open, setOpen] = useState(false)
+    const {topArrow, bottomArrow, navbarOpen} = useSelector(state => state.app);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,6 +25,10 @@ export default function App() {
             topArrowUpdate(true, dispatch)
         }
     }, [])
+
+    window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+    }
 
     window.onscroll = function (e) {
         if(window.scrollY === 0){
@@ -38,18 +42,17 @@ export default function App() {
         }
     }
     return (
-      <Router history={history}>
-          <div className={classes.root}>
-              <IconButton className={classes.iconContainer} onClick={() => setOpen(!open)}>
-                  <MenuIcon className={classes.menuIcon}/>
-              </IconButton>
-              {open && <Navbar open={open} setOpen={setOpen}/>}
-              <Switch>
-                  <Route exact path='/' component={Dashboard} history={history}/>
-                  <Route exact path='/projects' component={Projects} history={history}/>
-              </Switch>
-              <LinkIcons/>
-          </div>
-      </Router>
+      <div className={classes.root}>
+          <IconButton className={classes.iconContainer} onClick={() => updateNavbar(!navbarOpen, dispatch)}>
+              <MenuIcon className={classes.menuIcon}/>
+          </IconButton>
+          <Navbar history={history}/>
+          <Switch>
+              <Route exact path='/' component={Dashboard} history={history}/>
+              <Route exact path='/projects' component={Projects} history={history}/>
+              <Route exact path='/contact' component={Contact} history={history}/>
+          </Switch>
+          <LinkIcons/>
+      </div>
     );
 }

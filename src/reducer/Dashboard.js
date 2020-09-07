@@ -3,7 +3,8 @@ import {
 } from "../actions/Dashboard";
 
 const initialState = {
-    projectedSelected: ''
+    projectedSelected: '',
+    projectList: ['Food_Backpack', 'Trip_Quest', 'Autobiographical'],
 };
 
 export default function dashboard(state = initialState, action){

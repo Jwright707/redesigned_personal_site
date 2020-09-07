@@ -41,7 +41,8 @@ const store = createStore(
 );
 
 store.subscribe(() => saveToLocalStorage({
-    app: store.getState().app,
+    // app: store.getState().app,
+    dashboard: store.getState().dashboard
 }))
 
 export default store;

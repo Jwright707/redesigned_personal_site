@@ -5,14 +5,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import store from "./store";
-import CssBaseline from '@material-ui/core/CssBaseline'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import history from "./history";
+import {BrowserRouter as Router} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={store}>
-          <CssBaseline/>
-          <App />
-      </Provider>
+      <Router history={history}>
+          <Provider store={store}>
+              <CssBaseline/>
+              <App />
+          </Provider>
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
