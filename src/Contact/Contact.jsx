@@ -3,12 +3,15 @@ import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import {contactStyles} from "../styles/contactStyles";
 import { Form, Field } from "react-final-form"
+import {emailResponse} from "../actions/Contact";
+import {useDispatch} from "react-redux";
 
 export default function Contact(props){
     const classes = makeStyles(theme => contactStyles(theme))()
+    const dispatch = useDispatch();
 
     const onSubmit = (values) => {
-        console.log(values)
+        emailResponse(values, dispatch)
     }
 
     return (
