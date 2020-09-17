@@ -12,6 +12,7 @@ import {bottomArrowUpdate, topArrowUpdate, updateNavbar} from "./actions/App";
 import Projects from "./Projects/Projects";
 import Navbar from "./Components/Navbar";
 import Contact from "./Contact/Contact";
+import {ToastContainer} from "react-toastify";
 
 export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()

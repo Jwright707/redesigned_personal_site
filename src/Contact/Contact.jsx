@@ -5,13 +5,19 @@ import {contactStyles} from "../styles/contactStyles";
 import { Form, Field } from "react-final-form"
 import {emailResponse} from "../actions/Contact";
 import {useDispatch} from "react-redux";
+import {ToastContainer} from "react-toastify";
 
 export default function Contact(props){
     const classes = makeStyles(theme => contactStyles(theme))()
     const dispatch = useDispatch();
 
     const onSubmit = (values) => {
-        emailResponse(values, dispatch)
+        const combinedValues = {
+            name: values.name || "{Name not entered}",
+            email: values.email || "{Email not entered}",
+            message: values.message || "{Message not entered}",
+        }
+        emailResponse(combinedValues, dispatch)
     }
 
     return (

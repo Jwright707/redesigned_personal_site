@@ -35,5 +35,9 @@ export const contactStyles = (theme) => ({
         fontSize: '2vw',
         fontWeight: 'bold',
         background: lightGreen,
+        cursor: 'pointer',
+        '&:hover': {
+            opacity: '.5'
+        }
     }
 })
