@@ -2,19 +2,21 @@ import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from 'redux-thunk'
 import app from "./reducer/App";
 import dashboard from "./reducer/Dashboard";
+import content from './reducer/Content';
+import contact from './reducer/Contact';
 
-function saveToLocalStorage(state){
+function saveToSessionStorage(state){
     try {
         const serializedState = JSON.stringify(state)
-        localStorage.setItem('state', serializedState)
+        sessionStorage.setItem('state', serializedState)
     }catch (e) {
         console.log(e)
     }
 }
 
-function loadFromLocalStorage(){
+function loadFromSessionStorage(){
     try {
-        const serializedState = localStorage.getItem('state')
+        const serializedState = sessionStorage.getItem('state')
         if(!serializedState) {
             return undefined
         }
@@ -25,11 +27,13 @@ function loadFromLocalStorage(){
     }
 }
 
-const persistedState = loadFromLocalStorage()
+const persistedState = loadFromSessionStorage()
 
 const reducer = combineReducers({
     app,
     dashboard,
+    content,
+    contact,
 })
 
 const middleware = applyMiddleware(thunk);
@@ -40,9 +44,10 @@ const store = createStore(
     middleware
 );
 
-store.subscribe(() => saveToLocalStorage({
+store.subscribe(() => saveToSessionStorage({
     // app: store.getState().app,
-    dashboard: store.getState().dashboard
+    dashboard: store.getState().dashboard,
+    content: store.getState().content,
 }))
 
 export default store;

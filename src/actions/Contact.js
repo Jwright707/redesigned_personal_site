@@ -2,13 +2,20 @@ import axios from "axios";
 import {toast} from "react-toastify";
 
 export const EMAIL_RESPONSE = 'EMAIL_RESPONSE';
+export const RESET_EMAIL_RESPONSE = 'RESET_EMAIL_RESPONSE';
+
+export const resetEmailResponse = (values, dispatch) => dispatch({type: RESET_EMAIL_RESPONSE, payload: values})
 
 export const emailResponse = async (values, dispatch) => {
     try{
-        const emailCallback = await axios.post('http://localhost:5000/email', {
+        const emailCallback = await axios.post(`${process.env.REACT_APP_API}email`, {
             name: values.name,
             email: values.email,
             message: values.message,
+        })
+        dispatch({
+            type: EMAIL_RESPONSE,
+            payload: emailCallback.status
         })
         console.log(emailCallback)
     }catch (err) {

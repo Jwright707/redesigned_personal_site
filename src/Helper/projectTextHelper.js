@@ -40,6 +40,6 @@ export const Autobiographical_Text = {
     websiteURL: 'https://google.com/',
     developerRole: 'My role during this project was to design and implement the entire site from scratch.',
     structureOverview: 'The structure of this application uses React/Redux for the front-end, ' +
-        ' Node.js for the back-end, GraphQL for the database, and Heroku for code build and ' +
+        ' Node.js for the back-end, MongoDB for the database, and Heroku for code build and ' +
         ' deployment.',
 };

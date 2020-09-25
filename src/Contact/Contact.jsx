@@ -1,16 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import {contactStyles} from "../styles/contactStyles";
 import { Form, Field } from "react-final-form"
-import {emailResponse} from "../actions/Contact";
-import {useDispatch} from "react-redux";
-import {ToastContainer} from "react-toastify";
+import {useDispatch, useSelector} from "react-redux";
+import {emailResponse, resetEmailResponse} from "../actions/Contact";
+import { CircularProgress } from '@material-ui/core';
+
 
 export default function Contact(props){
     const classes = makeStyles(theme => contactStyles(theme))()
     const dispatch = useDispatch();
-
+    const [submitted, setSubmitted] = useState(false)
+    const {emailStatus} = useSelector(state => state.contact)
     const onSubmit = (values) => {
         const combinedValues = {
             name: values.name || "{Name not entered}",
@@ -19,7 +21,12 @@ export default function Contact(props){
         }
         emailResponse(combinedValues, dispatch)
     }
-
+    useEffect(() => {
+        if(emailStatus){
+            setSubmitted(false)
+            resetEmailResponse(false, dispatch)
+        }
+    }, [emailStatus])
     return (
         <Grid container direction={'row'} style={{flexWrap: 'nowrap'}} className="App">
             <Grid item container xs={6} className={classes.leftSideDashboardContainer}/>
@@ -69,8 +76,10 @@ export default function Contact(props){
                                 </Grid>
                             </Grid>
                             <Grid item container justify={'center'} style={{paddingTop: 25}}>
-                                <button type="submit" className={classes.contactButton} disabled={submitting || pristine}>
-                                    Send Message
+                                <button type="submit" style={{cursor: submitting || pristine ? "default" : 'pointer'}} className={classes.contactButton} disabled={submitting || pristine} onClick={() => {
+                                    setSubmitted(true)
+                                }}>
+                                    {submitted ? <CircularProgress/> : `Send Message`}
                                 </button>
                             </Grid>
                         </form>

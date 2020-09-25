@@ -13,11 +13,16 @@ import Projects from "./Projects/Projects";
 import Navbar from "./Components/Navbar";
 import Contact from "./Contact/Contact";
 import {ToastContainer} from "react-toastify";
+import {fetchProjectData} from "./actions/Content";
 
 export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()
     const {topArrow, bottomArrow, navbarOpen} = useSelector(state => state.app);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        fetchProjectData(dispatch)
+    }, [])
 
     useEffect(() => {
         if(window.scrollY === 0){
