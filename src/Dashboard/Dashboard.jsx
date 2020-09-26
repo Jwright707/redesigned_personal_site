@@ -18,7 +18,7 @@ export default function Dashboard(props){
     const {history} = props;
     const classes = makeStyles(theme => dashboardStyles(theme))()
     const {topArrow, bottomArrow} = useSelector(state => state.app)
-    const {projectList} = useSelector(state => state.dashboard)
+    const {projectList, dashboardDescription, dashboardSkills} = useSelector(state => state.dashboard)
     const dispatch = useDispatch();
     useLayoutEffect(() => {
         document.getElementById('arrowDown').animate([
@@ -44,6 +44,7 @@ export default function Dashboard(props){
     }, [])
     useEffect(() => {
         updateProjectSelected('', dispatch)
+        document.title = 'Home | Joshua Wright'
     }, [])
     return(
         <Fragment>
@@ -51,14 +52,7 @@ export default function Dashboard(props){
                 <Grid item container xs={6} className={classes.leftSideDashboardContainer}>
                     <Grid item container justify={'center'} alignItems={'flex-end'} xs={12}>
                         <Typography className={classes.leftSideDescription}>
-                            My name is Joshua Wright and I am a full-time student
-                            at the University of California, Davis. I am working
-                            towards a Bachelor of Science in Computer Science
-                            and a minor in Economics. My main focus and inspiration
-                            for my studies is web development and full-stack development.
-                            I am very passionate about Software Development, and I strive to better
-                            myself as a developer by constantly learning and programming in
-                            my free time.
+                            {dashboardDescription?.[0]?.description}
                         </Typography>
                     </Grid>
                     <Grid item container justify={'center'} alignItems={'flex-end'} xs={12}>
@@ -74,6 +68,29 @@ export default function Dashboard(props){
                         JOSHUA WRIGHT
                     </Typography>
                     <img src={PersonalImage} alt={'Joshua Wright'} className={classes.dashboardImage}/>
+                </Grid>
+            </Grid>
+            <Grid item container xs={6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
+                <Grid item xs={12}>
+                    <Typography className={classes.projectsTitle}>
+                        Skills
+                    </Typography>
+                </Grid>
+                <Grid container>
+                    {dashboardSkills.map((skill, index) => (
+                            <Grid item key={index} container xs={12} justify={'flex-start'} alignItems={'flex-start'} direction={'column'} className={classes.eachSkillContainer}>
+                                <Grid item xs={12}>
+                                    <Typography className={classes.eachSkillTitle}>
+                                        {skill.skills}:
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography className={classes.eachSkillDescription}>
+                                        {skill.description}
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        ))}
                 </Grid>
             </Grid>
             <Grid item container xs={6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>

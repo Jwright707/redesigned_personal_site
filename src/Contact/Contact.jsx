@@ -27,6 +27,9 @@ export default function Contact(props){
             resetEmailResponse(false, dispatch)
         }
     }, [emailStatus])
+    useEffect(() => {
+        document.title = 'Contact | Joshua Wright'
+    })
     return (
         <Grid container direction={'row'} style={{flexWrap: 'nowrap'}} className="App">
             <Grid item container xs={6} className={classes.leftSideDashboardContainer}/>

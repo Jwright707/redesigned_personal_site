@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
 import {useSelector} from "react-redux";
 import {Typography} from "@material-ui/core";
@@ -30,6 +30,12 @@ export default function Projects(props){
     const {topArrow, bottomArrow} = useSelector(state => state.app)
     const classes = makeStyles(theme => projectStyles(theme))()
     const selectedProject = objectHelper[`${projectedSelected}`] || objectHelper[projectList[0]]
+    const tabFormat = selectedProject?.title
+        ?.toLowerCase()
+        ?.split(' ')
+        ?.map(character => character?.charAt(0)?.toUpperCase()+character?.slice(1))
+        ?.join(' ')
+
     useLayoutEffect(() => {
         document.getElementById('arrowDown').animate([
             { opacity: 1 },
@@ -52,6 +58,9 @@ export default function Projects(props){
             iterations: Infinity,
         })
     }, [])
+    useEffect(() => {
+      document.title = `${tabFormat} | Joshua Wright`
+    })
     return(
         <Grid container>
             <Grid container direction={'row'} style={{flexWrap: 'nowrap'}} className="App">

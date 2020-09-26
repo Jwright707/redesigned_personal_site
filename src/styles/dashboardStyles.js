@@ -70,6 +70,20 @@ export const dashboardStyles = (theme) => ({
     eachProjectContainer: {
         paddingTop: 50
     },
+    eachSkillContainer: {
+        paddingTop: 50,
+        paddingLeft: 50,
+        paddingRight: 50,
+    },
+    eachSkillTitle: {
+        fontSize: '1.5vw',
+        fontFamily: josefinSlab,
+        fontWeight: 'bold',
+    },
+    eachSkillDescription: {
+        fontSize: '1.3vw',
+        fontFamily: josefinSlab,
+    },
     eachProjectTitle: {
         fontSize: '1.5vw',
         fontFamily: josefinSlab,
