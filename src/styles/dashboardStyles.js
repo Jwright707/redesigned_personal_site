@@ -1,11 +1,12 @@
 import {sourceCodePro, josefinSlab} from "./globalStyles";
 
-export const dashboardStyles = (theme) => ({
+export const dashboardStyles = (theme, layoutChange) => ({
     root: {
         display: "flex",
     },
     rightSideDashboardContainer: {
         width: '100%',
+        overflowX: 'hidden',
     },
     leftSideDashboardContainer: {
         width: '100%',
@@ -15,20 +16,25 @@ export const dashboardStyles = (theme) => ({
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        position: 'fixed',
+        position: layoutChange ? 'static' : 'fixed',
         height: '100vh',
-        width: '50%',
+        width: layoutChange ? '100%' : '50%',
+        minWidth: '500px',
         right: 0,
+        opacity: 1,
     },
     rightSideTitle: {
         fontSize: '5vw',
         zIndex: 2,
-        position: 'fixed',
+        position: layoutChange ? 'absolute' : 'fixed',
         fontFamily: sourceCodePro,
         color: 'white',
         margin: `100px 0 0 0`,
         [theme.breakpoints.up('xl')]: {
             fontSize: '80px',
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '8vw'
         },
     },
     leftSideDescription: {
@@ -38,6 +44,14 @@ export const dashboardStyles = (theme) => ({
         fontWeight: 600,
         width: '80%',
         textAlign: 'center',
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+            fontSize: '3vw'
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: '80%',
+            fontSize: '3.3vw'
+        }
     },
     projectsSectionContainer: {
         minHeight: '100vh',
@@ -55,16 +69,26 @@ export const dashboardStyles = (theme) => ({
         fontSize: '2vw',
         fontFamily: josefinSlab,
         fontWeight: 'bold',
-        textDecoration: 'underline'
+        textDecoration: 'underline',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '3.5vw',
+        }
     },
     eachProjectImage: {
-        width: 300,
-        height: 300,
+        width: '20vw',
+        height: '20vw',
         border: `2px solid black`,
         borderRadius: 500,
         transition: 'transform 300ms ease-in-out',
         '&:hover': {
             transform: `scale(1.1) translate(0, 15px)`
+        },
+        [theme.breakpoints.up('xl')]: {
+            width: 300,
+            height: 300,        },
+        [theme.breakpoints.down('sm')]: {
+            width: '40vw',
+            height: '40vw',
         }
     },
     eachProjectContainer: {
@@ -74,20 +98,33 @@ export const dashboardStyles = (theme) => ({
         paddingTop: 50,
         paddingLeft: 50,
         paddingRight: 50,
+        [theme.breakpoints.down('sm')]: {
+            paddingLeft: 50,
+        }
     },
     eachSkillTitle: {
         fontSize: '1.5vw',
         fontFamily: josefinSlab,
         fontWeight: 'bold',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '2.5vw',
+        }
+
     },
     eachSkillDescription: {
         fontSize: '1.3vw',
         fontFamily: josefinSlab,
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '2.3vw',
+        }
     },
     eachProjectTitle: {
         fontSize: '1.5vw',
         fontFamily: josefinSlab,
         fontWeight: 'bold',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '2.3vw',
+        }
     },
     eachProjectLearnMore: {
         fontSize: '1.1vw',

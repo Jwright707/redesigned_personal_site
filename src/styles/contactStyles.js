@@ -17,16 +17,25 @@ export const contactStyles = (theme) => ({
         width: '50vw',
         outline: 'none',
         minHeight: '250px',
+        [theme.breakpoints.down('md')]: {
+            width: '80vw',
+        }
     },
     inputAreas: {
         width: '50vw',
         minHeight: '50px',
         outline: 'none',
+        [theme.breakpoints.down('md')]: {
+            width: '80vw',
+        }
     },
     label: {
         fontSize: '1.3vw',
         fontFamily: josefinSlab,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '3vw',
+        }
     },
     contactButton: {
         width: '50vw',
@@ -35,8 +44,5 @@ export const contactStyles = (theme) => ({
         fontSize: '2vw',
         fontWeight: 'bold',
         background: lightGreen,
-        // '&:hover': {
-        //     opacity: '.5'
-        // }
     }
 })

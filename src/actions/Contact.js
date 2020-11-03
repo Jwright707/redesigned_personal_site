@@ -17,7 +17,6 @@ export const emailResponse = async (values, dispatch) => {
             type: EMAIL_RESPONSE,
             payload: emailCallback.status
         })
-        console.log(emailCallback)
     }catch (err) {
         console.log(err)
     }

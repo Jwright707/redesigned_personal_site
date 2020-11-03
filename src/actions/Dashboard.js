@@ -8,7 +8,6 @@ export const updateProjectSelected = (values, dispatch) => dispatch({type: UPDAT
 export const fetchDashboardData = async (dispatch) => {
     try{
         const dashboardData = await axios.get(`${process.env.REACT_APP_API}home`)
-        console.log(dashboardData)
         const {description, skills} = dashboardData?.data?.reduce((object, item) => {
             const varToggle = item.skills ? 'skills' : 'description';
             object[varToggle].push(item)

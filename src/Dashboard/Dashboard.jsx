@@ -16,7 +16,8 @@ import {updateProjectSelected} from "../actions/Dashboard";
 
 export default function Dashboard(props){
     const {history} = props;
-    const classes = makeStyles(theme => dashboardStyles(theme))()
+    const layoutChange = window.innerWidth < 960
+    const classes = makeStyles(theme => dashboardStyles(theme, layoutChange))()
     const {topArrow, bottomArrow} = useSelector(state => state.app)
     const {projectList, dashboardDescription, dashboardSkills} = useSelector(state => state.dashboard)
     const dispatch = useDispatch();
@@ -48,14 +49,31 @@ export default function Dashboard(props){
     }, [])
     return(
         <Fragment>
+            {layoutChange &&
+                <Fragment>
+                    <Grid item container alignItems={'flex-start'} justify={'center'} xs={12} className={classes.rightSideDashboardContainer}>
+                        <Typography className={classes.rightSideTitle}>
+                            JOSHUA WRIGHT
+                        </Typography>
+                        <img src={PersonalImage} alt={'Joshua Wright'} className={classes.dashboardImage}/>
+                    </Grid>
+                    <Grid item container style={{marginTop: '-7vw', zIndex: 9999}} justify={'center'} alignItems={'flex-end'} xs={12}>
+                        <KeyboardArrowDownIcon
+                            className={classes.arrowDownIcon}
+                            style={{color: 'black', display: bottomArrow ? 'block' : 'none'}}
+                            id={'arrowDown'}
+                        />
+                    </Grid>
+                </Fragment>
+            }
             <Grid container direction={'row'} style={{flexWrap: 'nowrap'}} className="App">
-                <Grid item container xs={6} className={classes.leftSideDashboardContainer}>
+                <Grid item container xs={layoutChange ? 12 : 6} className={classes.leftSideDashboardContainer}>
                     <Grid item container justify={'center'} alignItems={'flex-end'} xs={12}>
                         <Typography className={classes.leftSideDescription}>
                             {dashboardDescription?.[0]?.description}
                         </Typography>
                     </Grid>
-                    <Grid item container justify={'center'} alignItems={'flex-end'} xs={12}>
+                    <Grid style={{opacity: !layoutChange ? 0 : 1}} item container justify={'center'} alignItems={'flex-end'} xs={12}>
                         <KeyboardArrowDownIcon
                             className={classes.arrowDownIcon}
                             style={{color: bottomArrow ? 'black' : navyBlue}}
@@ -63,14 +81,16 @@ export default function Dashboard(props){
                         />
                     </Grid>
                 </Grid>
-                <Grid item container alignItems={'flex-start'} justify={'center'} xs={6} className={classes.rightSideDashboardContainer}>
-                    <Typography className={classes.rightSideTitle}>
-                        JOSHUA WRIGHT
-                    </Typography>
-                    <img src={PersonalImage} alt={'Joshua Wright'} className={classes.dashboardImage}/>
-                </Grid>
+                {!layoutChange &&
+                    <Grid item container alignItems={'flex-start'} justify={'center'} xs={6} className={classes.rightSideDashboardContainer}>
+                        <Typography className={classes.rightSideTitle}>
+                            JOSHUA WRIGHT
+                        </Typography>
+                        <img src={PersonalImage} alt={'Joshua Wright'} className={classes.dashboardImage}/>
+                    </Grid>
+                }
             </Grid>
-            <Grid item container xs={6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
+            <Grid item container xs={layoutChange ? 12 : 6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
                 <Grid item xs={12}>
                     <Typography className={classes.projectsTitle}>
                         Skills
@@ -93,7 +113,7 @@ export default function Dashboard(props){
                         ))}
                 </Grid>
             </Grid>
-            <Grid item container xs={6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
+            <Grid item container xs={layoutChange ? 12 : 6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
                 <Grid item>
                     <KeyboardArrowDownIcon
                         className={classes.arrowUpIcon}
@@ -115,7 +135,7 @@ export default function Dashboard(props){
                                 Autobiographical: Autobiographical
                             }
                             return (
-                                <Grid item key={index} container xs={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
+                                <Grid item key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
                                     <Grid item xs={12}>
                                         <Typography className={classes.eachProjectTitle}>
                                             {project.replace('_', " ")}

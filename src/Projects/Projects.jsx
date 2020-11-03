@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {Fragment, useEffect, useLayoutEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
 import {useSelector} from "react-redux";
 import {Typography} from "@material-ui/core";
@@ -11,6 +11,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {projectStyles} from "../styles/projectStyles";
 import {Food_Backpack_Text, Trip_Quest_Text, Autobiographical_Text} from "../Helper/projectTextHelper";
 import Food_Backpack_Structure from "../assets/images/FoodBackpack.png";
+import PersonalImage from "../assets/images/imagejpeg_3_01.jpg";
 
 
 const objectHelper = {
@@ -25,10 +26,11 @@ const mapHelper = {
     Autobiographical: Autobiographical
 }
 
-export default function Projects(props){
+export default function Projects(){
+    const layoutChange = window.innerWidth < 960
     const {projectedSelected, projectList} = useSelector(state => state.dashboard)
     const {topArrow, bottomArrow} = useSelector(state => state.app)
-    const classes = makeStyles(theme => projectStyles(theme))()
+    const classes = makeStyles(theme => projectStyles(theme, layoutChange))()
     const selectedProject = objectHelper[`${projectedSelected}`] || objectHelper[projectList[0]]
     const tabFormat = selectedProject?.title
         ?.toLowerCase()
@@ -63,8 +65,25 @@ export default function Projects(props){
     })
     return(
         <Grid container>
+            {layoutChange &&
+                <Fragment>
+                    <Grid item container alignItems={'flex-start'} justify={'center'} xs={layoutChange ? 12 : 6} className={classes.rightSideDashboardContainer}>
+                        <Typography className={classes.rightSideTitle}>
+                            {selectedProject.title}
+                        </Typography>
+                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replace('_', ' ')}`} className={classes.dashboardImage}/>
+                    </Grid>
+                    <Grid item container style={{marginTop: '-7vw', zIndex: 9999}} justify={'center'} alignItems={'flex-end'} xs={12}>
+                        <KeyboardArrowDownIcon
+                            className={classes.arrowDownIcon}
+                            style={{color: 'black', display: bottomArrow ? 'block' : 'none'}}
+                            id={'arrowDown'}
+                        />
+                    </Grid>
+                </Fragment>
+            }
             <Grid container direction={'row'} style={{flexWrap: 'nowrap'}} className="App">
-                <Grid item container xs={6} className={classes.leftSideDashboardContainer}>
+                <Grid item container xs={layoutChange ? 12 : 6} className={classes.leftSideDashboardContainer}>
                     <Grid container justify={'center'} alignItems={'flex-end'}>
                         <Typography className={classes.leftSideDescription}>
                             {selectedProject.projectDescription}
@@ -81,7 +100,7 @@ export default function Projects(props){
                                 Visit Website
                             </a>
                         </Grid>
-                        <Grid item>
+                        <Grid item style={{opacity: !layoutChange ? 0 : 1}}>
                             <KeyboardArrowDownIcon
                                 className={classes.arrowDownIcon}
                                 style={{color: bottomArrow ? 'black' : navyBlue}}
@@ -90,22 +109,24 @@ export default function Projects(props){
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item container alignItems={'flex-start'} justify={'center'} xs={6} className={classes.rightSideDashboardContainer}>
-                    <Typography className={classes.rightSideTitle}>
-                        {selectedProject.title}
-                    </Typography>
-                    <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replace('_', ' ')}`} className={classes.dashboardImage}/>
-                </Grid>
+                {!layoutChange &&
+                    <Grid item container alignItems={'flex-start'} justify={'center'} xs={6} className={classes.rightSideDashboardContainer}>
+                        <Typography className={classes.rightSideTitle}>
+                            {selectedProject.title}
+                        </Typography>
+                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replace('_', ' ')}`} className={classes.dashboardImage}/>
+                    </Grid>
+                }
             </Grid>
-            <Grid item container xs={6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
-                <Grid item>
+            <Grid item container xs={layoutChange ? 12 : 6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
+                <Grid item style={{opacity: !layoutChange ? 0 : 1}}>
                     <KeyboardArrowDownIcon
                         className={classes.arrowUpIcon}
                         style={{color: topArrow ? 'black' : navyBlue}}
                         id={'arrowUp'}
                     />
                 </Grid>
-                <Grid item container direction={'column'} justify={'flex-start'} alignItems={'flex-start'} style={{paddingLeft: 50}}>
+                <Grid item container direction={'column'} justify={'flex-start'} alignItems={'flex-start'} className={classes.bottomSection}>
                         <Grid item container justify={'center'} alignItems={'flex-start'} xs={12}>
                             <Typography className={classes.leftSideDescription2}>
                                 <b>Developer Role: </b> {selectedProject.developerRole}

@@ -3,9 +3,13 @@ import {
     FETCH_DASHBOARD_DATA
 } from "../actions/Dashboard";
 
+import {
+    PROJECT_LIST
+} from "../actions/Content";
+
 const initialState = {
     projectedSelected: '',
-    projectList: ['Food_Backpack', 'Trip_Quest', 'Autobiographical'],
+    projectList: [],
     dashboardDescription: [],
     dashboardSkills: [],
 };
@@ -22,6 +26,11 @@ export default function dashboard(state = initialState, action){
                 ...state,
                 dashboardDescription: action.payload.description,
                 dashboardSkills: action.payload.skills
+            }
+        case PROJECT_LIST:
+            return {
+                ...state,
+                projectList: action.payload
             }
         default:
             return state;

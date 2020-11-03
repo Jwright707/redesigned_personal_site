@@ -12,7 +12,6 @@ import {bottomArrowUpdate, topArrowUpdate, updateNavbar} from "./actions/App";
 import Projects from "./Projects/Projects";
 import Navbar from "./Components/Navbar";
 import Contact from "./Contact/Contact";
-import {ToastContainer} from "react-toastify";
 import {fetchProjectData} from "./actions/Content";
 import {fetchDashboardData} from "./actions/Dashboard";
 
@@ -20,11 +19,11 @@ export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()
     const {topArrow, bottomArrow, navbarOpen} = useSelector(state => state.app);
     const dispatch = useDispatch();
-
     useEffect(() => {
         fetchProjectData(dispatch)
         fetchDashboardData(dispatch)
     }, [])
+
     useEffect(() => {
         if(window.scrollY === 0){
             bottomArrowUpdate(true, dispatch)
@@ -40,7 +39,12 @@ export default function App() {
     window.onscroll = function (e) {
         if(window.scrollY === 0){
             bottomArrowUpdate(true, dispatch)
-        }else if(window.scrollY === window.innerHeight*2 || window.scrollY === window.innerHeight){
+        }else if(
+            window.scrollY === window.innerHeight*2
+            || window.scrollY === window.innerHeight*3
+            || window.scrollY === window.innerHeight*3 - 65
+            || window.scrollY === window.innerHeight
+        ){
             topArrowUpdate(true, dispatch)
         } else if (!bottomArrow && !topArrow){}
         else {
