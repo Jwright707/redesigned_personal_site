@@ -118,6 +118,7 @@ export const projectStyles = (theme, layoutChange) => ({
         paddingLeft: 30,
         [theme.breakpoints.down('md')]: {
             paddingLeft: 0,
+
         }
     }
 })
