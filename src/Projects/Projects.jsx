@@ -98,7 +98,7 @@ export default function Projects(){
                                 Visit Website
                             </a>
                         </Grid>
-                        <Grid item style={{opacity: !layoutChange ? 0 : 1}}>
+                        <Grid item style={{opacity: !layoutChange ? 1 : 0}}>
                             <KeyboardArrowDownIcon
                                 className={classes.arrowDownIcon}
                                 style={{color: bottomArrow ? 'black' : navyBlue}}
@@ -117,7 +117,7 @@ export default function Projects(){
                 }
             </Grid>
             <Grid item container xs={layoutChange ? 12 : 6} direction={'column'} justify={'flex-start'} alignItems={'center'} className={classes.projectsSectionContainer}>
-                <Grid item style={{opacity: !layoutChange ? 0 : 1}}>
+                <Grid item>
                     <KeyboardArrowDownIcon
                         className={classes.arrowUpIcon}
                         style={{color: topArrow ? 'black' : navyBlue}}

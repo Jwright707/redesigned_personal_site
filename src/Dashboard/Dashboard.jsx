@@ -73,7 +73,7 @@ export default function Dashboard(props){
                             {dashboardDescription?.[0]?.description}
                         </Typography>
                     </Grid>
-                    <Grid style={{opacity: !layoutChange ? 0 : 1}} item container justify={'center'} alignItems={'flex-end'} xs={12}>
+                    <Grid style={{opacity: !layoutChange ? 1 : 0}} item container justify={'center'} alignItems={'flex-end'} xs={12}>
                         <KeyboardArrowDownIcon
                             className={classes.arrowDownIcon}
                             style={{color: bottomArrow ? 'black' : navyBlue}}
