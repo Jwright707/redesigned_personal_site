@@ -20,7 +20,6 @@ export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()
     const {topArrow, bottomArrow, navbarOpen} = useSelector(state => state.app);
     const {loading} = useSelector(state => state.loading);
-    console.log(loading)
     const dispatch = useDispatch();
     useEffect(() => {
         fetchProjectData(dispatch)
