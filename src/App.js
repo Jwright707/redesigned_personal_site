@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import history from "./history";
 import Dashboard from "./Dashboard/Dashboard";
 import {makeStyles} from "@material-ui/core/styles";
@@ -14,10 +14,13 @@ import Navbar from "./Components/Navbar";
 import Contact from "./Contact/Contact";
 import {fetchProjectData} from "./actions/Content";
 import {fetchDashboardData} from "./actions/Dashboard";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function App() {
     const classes = makeStyles(theme => appStyles(theme))()
     const {topArrow, bottomArrow, navbarOpen} = useSelector(state => state.app);
+    const {loading} = useSelector(state => state.loading);
+    console.log(loading)
     const dispatch = useDispatch();
     useEffect(() => {
         fetchProjectData(dispatch)
@@ -54,16 +57,27 @@ export default function App() {
     }
     return (
       <div className={classes.root}>
-          <IconButton className={classes.iconContainer} onClick={() => updateNavbar(!navbarOpen, dispatch)}>
-              <MenuIcon className={classes.menuIcon}/>
-          </IconButton>
-          <Navbar history={history}/>
-          <Switch>
-              <Route exact path='/' component={Dashboard} history={history}/>
-              <Route exact path='/projects' component={Projects} history={history}/>
-              <Route exact path='/contact' component={Contact} history={history}/>
-          </Switch>
-          <LinkIcons/>
+          {!loading ? (
+              <Fragment>
+                  <IconButton className={classes.iconContainer} onClick={() => updateNavbar(!navbarOpen, dispatch)}>
+                      <MenuIcon className={classes.menuIcon}/>
+                  </IconButton>
+                  <Navbar history={history}/>
+                  <Switch>
+                      <Route exact path='/' component={Dashboard} history={history}/>
+                      <Route exact path='/projects' component={Projects} history={history}/>
+                      <Route exact path='/contact' component={Contact} history={history}/>
+                  </Switch>
+                  <LinkIcons/>
+              </Fragment>
+          ): (
+              <div style={{ width: '100px', minHeight: '100vh', marginLeft: 'auto', marginRight: 'auto', paddingTop: '30vw' }}>
+                  <CircularProgress size={150}/>
+                  <p style={{width: '100%',textAlign: "center", paddingLeft: 15, fontSize: '3vw'}}>
+                      Loading
+                  </p>
+              </div>
+          )}
       </div>
     );
 }

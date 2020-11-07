@@ -4,6 +4,7 @@ import app from "./reducer/App";
 import dashboard from "./reducer/Dashboard";
 import content from './reducer/Content';
 import contact from './reducer/Contact';
+import loading from "./reducer/Loading"
 
 function saveToSessionStorage(state){
     try {
@@ -34,6 +35,7 @@ const reducer = combineReducers({
     dashboard,
     content,
     contact,
+    loading,
 })
 
 const middleware = applyMiddleware(thunk);
