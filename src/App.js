@@ -29,7 +29,7 @@ export default function App() {
     useEffect(() => {
         if(window.scrollY === 0){
             bottomArrowUpdate(true, dispatch)
-        }else if(window.scrollY === window.innerHeight){
+        }else if(window.scrollY l window.innerHeight){
             topArrowUpdate(true, dispatch)
         }
     }, [])
@@ -72,9 +72,9 @@ export default function App() {
           ): (
               <div style={{ width: '100px', minHeight: '100vh', marginLeft: 'auto', marginRight: 'auto', paddingTop: '30vw' }}>
                   <CircularProgress size={150}/>
-                  <p style={{width: '100%',textAlign: "center", paddingLeft: 15, fontSize: '3vw'}}>
-                      Loading
-                  </p>
+                  {/*<p style={{width: '100%',textAlign: "center", paddingLeft: 15, fontSize: '3vw'}}>*/}
+                  {/*    Loading*/}
+                  {/*</p>*/}
               </div>
           )}
       </div>
