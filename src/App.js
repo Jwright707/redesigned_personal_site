@@ -29,7 +29,7 @@ export default function App() {
     useEffect(() => {
         if(window.scrollY === 0){
             bottomArrowUpdate(true, dispatch)
-        }else if(window.scrollY l window.innerHeight){
+        }else if(window.scrollY === window.innerHeight){
             topArrowUpdate(true, dispatch)
         }
     }, [])
