@@ -148,6 +148,15 @@ export default function Projects(){
                                     <b>View Structure</b>
                                 </a>
                             )}
+                            {projectedSelected === 'Dotty_(chatbot)' && (
+                                <a className={classes.viewStructure}
+                                   href={"https://jwright-images.s3-us-west-1.amazonaws.com/chatbot_diagram.png"}
+                                   download="Dotty_(chatbot) Structure"
+                                   target={'_blank'}
+                                >
+                                    <b>View Structure</b>
+                                </a>
+                            )}
                         </Grid>
                 </Grid>
             </Grid>
