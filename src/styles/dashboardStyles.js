@@ -81,7 +81,7 @@ export const dashboardStyles = (theme, layoutChange) => ({
         borderRadius: 500,
         transition: 'transform 300ms ease-in-out',
         '&:hover': {
-            transform: `scale(1.1) translate(0, 15px)`
+            transform: `scale(1.03) translate(0, 3px)`
         },
         [theme.breakpoints.up('xl')]: {
             width: 300,

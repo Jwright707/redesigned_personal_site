@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useLayoutEffect} from 'react';
+import React, {Fragment, useEffect, useLayoutEffect, useState} from 'react';
 import Grid from "@material-ui/core/Grid";
 import {useSelector} from "react-redux";
 import {Typography} from "@material-ui/core";
@@ -17,7 +17,14 @@ const mapHelper = {
 }
 
 export default function Projects(){
-    const layoutChange = window.innerWidth < 960
+    const [layoutChange, setLayoutChange] = useState(window.innerWidth < 960)
+    window.onresize = function (){
+        if(window.innerWidth < 960){
+            setLayoutChange(true)
+        }else{
+            setLayoutChange(false)
+        }
+    }
     const {projectedSelected, projectList} = useSelector(state => state.dashboard)
     const {projectContents} = useSelector(state => state.content)
     const objectFormatter = projectList.reduce((object, projectName, index) => {
@@ -58,6 +65,7 @@ export default function Projects(){
     useEffect(() => {
       document.title = `${tabFormat} | Joshua Wright`
     })
+
     return(
         <Grid container>
             {layoutChange &&
@@ -86,14 +94,14 @@ export default function Projects(){
                     </Grid>
                     <Grid container direction={'column'} justify={'flex-end'} alignItems={'center'}>
                         <Grid item style={{zIndex: 2}}>
-                            <a href={`${selectedProject.application_url}`}
-                               target={'_blank'}
-                               className={classes.leftSideDescription}
-                               style={{whiteSpace: "nowrap", textDecoration: 'none', color: 'black'}}
-                               rel="noopener noreferrer"
+                            {!["Selenium_Testing", "Dotty_(chatbot)"].includes(projectedSelected) && <a href={`${selectedProject.application_url}`}
+                                target={'_blank'}
+                                className={classes.leftSideDescription}
+                                style={{whiteSpace: "nowrap", textDecoration: 'none', color: 'black'}}
+                                rel="noopener noreferrer"
                             >
                                 Visit Website
-                            </a>
+                            </a>}
                         </Grid>
                         <Grid item style={{opacity: !layoutChange ? 1 : 0}}>
                             <KeyboardArrowDownIcon

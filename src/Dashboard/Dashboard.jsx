@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useLayoutEffect} from 'react';
+import React, {Fragment, useEffect, useLayoutEffect, useState} from 'react';
 import '../App.css';
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
@@ -12,7 +12,14 @@ import {updateProjectSelected} from "../actions/Dashboard";
 
 export default function Dashboard(props){
     const {history} = props;
-    const layoutChange = window.innerWidth < 960
+    const [layoutChange, setLayoutChange] = useState(window.innerWidth < 960)
+    window.onresize = function (){
+        if(window.innerWidth < 960){
+            setLayoutChange(true)
+        }else{
+            setLayoutChange(false)
+        }
+    }
     const classes = makeStyles(theme => dashboardStyles(theme, layoutChange))()
     const {topArrow, bottomArrow} = useSelector(state => state.app)
     const {projectList, dashboardDescription, dashboardSkills} = useSelector(state => state.dashboard)
