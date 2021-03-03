@@ -4,13 +4,9 @@ import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import {dashboardStyles} from "../styles/dashboardStyles";
 import {Typography, Zoom} from "@material-ui/core";
-import PersonalImage from '../assets/images/imagejpeg_3_01.jpg';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import {useDispatch, useSelector} from "react-redux";
 import {navyBlue} from "../styles/globalStyles";
-import Food_Backpack from '../assets/images/foodbackpack_logo.png';
-import Trip_Quest from '../assets/images/lake-between-1337608.jpg';
-import Autobiographical from '../assets/images/69518727_2636667863042663_1069526786045378560_n.jpg';
 import Tooltip from '@material-ui/core/Tooltip';
 import {updateProjectSelected} from "../actions/Dashboard";
 
@@ -55,7 +51,7 @@ export default function Dashboard(props){
                         <Typography className={classes.rightSideTitle}>
                             JOSHUA WRIGHT
                         </Typography>
-                        <img src={PersonalImage} alt={'Joshua Wright'} className={classes.dashboardImage}/>
+                        <img src={'https://jwright-images.s3-us-west-1.amazonaws.com/imagejpeg_3_01.jpg'} alt={'Joshua Wright'} className={classes.dashboardImage}/>
                     </Grid>
                     <Grid item container style={{marginTop: '-7vw', zIndex: 9999}} justify={'center'} alignItems={'flex-end'} xs={12}>
                         <KeyboardArrowDownIcon
@@ -86,7 +82,7 @@ export default function Dashboard(props){
                         <Typography className={classes.rightSideTitle}>
                             JOSHUA WRIGHT
                         </Typography>
-                        <img src={PersonalImage} alt={'Joshua Wright'} className={classes.dashboardImage}/>
+                        <img src={'https://jwright-images.s3-us-west-1.amazonaws.com/imagejpeg_3_01.jpg'} alt={'Joshua Wright'} className={classes.dashboardImage}/>
                     </Grid>
                 }
             </Grid>
@@ -130,9 +126,9 @@ export default function Dashboard(props){
                     <Grid container>
                         {projectList.map((project, index) => {
                             const mapHelper = {
-                                Food_Backpack: Food_Backpack,
-                                Trip_Quest: Trip_Quest,
-                                Autobiographical: Autobiographical
+                                Food_Backpack: 'https://jwright-images.s3-us-west-1.amazonaws.com/foodbackpack_logo.png',
+                                Trip_Quest: 'https://jwright-images.s3-us-west-1.amazonaws.com/lake-between-1337608.jpg',
+                                Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image'
                             }
                             return (
                                 <Grid item key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>

@@ -4,19 +4,14 @@ import {useSelector} from "react-redux";
 import {Typography} from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import {navyBlue} from "../styles/globalStyles";
-import Food_Backpack from "../assets/images/foodbackpack_logo.png";
-import Trip_Quest from "../assets/images/lake-between-1337608.jpg";
-import Autobiographical from "../assets/images/69518727_2636667863042663_1069526786045378560_n.jpg";
 import {makeStyles} from "@material-ui/core/styles";
 import {projectStyles} from "../styles/projectStyles";
-import Food_Backpack_Structure from "../assets/images/FoodBackpack.png";
-import PersonalImage from "../assets/images/imagejpeg_3_01.jpg";
 
 
 const mapHelper = {
-    Food_Backpack: Food_Backpack,
-    Trip_Quest: Trip_Quest,
-    Autobiographical: Autobiographical
+    Food_Backpack: 'https://jwright-images.s3-us-west-1.amazonaws.com/foodbackpack_logo.png',
+    Trip_Quest: 'https://jwright-images.s3-us-west-1.amazonaws.com/lake-between-1337608.jpg',
+    Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image'
 }
 
 export default function Projects(){
@@ -136,8 +131,9 @@ export default function Projects(){
                             </Typography>
                             {projectedSelected === 'Food_Backpack' && (
                                 <a className={classes.viewStructure}
-                                   href={`${Food_Backpack_Structure}`}
+                                   href={"https://jwright-images.s3-us-west-1.amazonaws.com/FoodBackpack.png"}
                                    download="Food Backpack Structure"
+                                   target={'_blank'}
                                 >
                                     <b>View Structure</b>
                                 </a>
