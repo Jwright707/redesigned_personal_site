@@ -128,7 +128,9 @@ export default function Dashboard(props){
                             const mapHelper = {
                                 Food_Backpack: 'https://jwright-images.s3-us-west-1.amazonaws.com/foodbackpack_logo.png',
                                 Trip_Quest: 'https://jwright-images.s3-us-west-1.amazonaws.com/lake-between-1337608.jpg',
-                                Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image'
+                                Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image',
+                                Selenium_Testing: 'https://jwright-images.s3-us-west-1.amazonaws.com/Cool+Selenium+drawing.png',
+                                "Dotty_(chatbot)": 'https://jwright-images.s3-us-west-1.amazonaws.com/Chatbot+Logo.png',
                             }
                             return (
                                 <Grid item key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
