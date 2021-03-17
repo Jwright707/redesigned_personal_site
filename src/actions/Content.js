@@ -11,7 +11,7 @@ export const fetchProjectData = async (dispatch) => {
     )
     try{
         const projectData = await axios.get(`${process.env.REACT_APP_API}content`)
-        const nameExtractor = projectData.data.map(name => name.project_name.replace(" ", "_").toLowerCase())
+        const nameExtractor = projectData.data.map(name => name.project_name.replaceAll(" ", "_").toLowerCase())
         const upperCaseFirstChar = nameExtractor.map(name => {
             let lodash = false
             return name.split("").map((char, index) => {

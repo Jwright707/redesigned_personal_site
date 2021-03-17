@@ -69,7 +69,7 @@ export default function Navbar(){
                                         updateProjectSelected(project, dispatch)
                                         window.scrollTo(0, 0);
                                     }}>
-                                        <ListItemText style={{whiteSpace: 'nowrap'}} primary={`- ${project.replace('_', ' ')}`} />
+                                        <ListItemText style={{whiteSpace: 'nowrap'}} primary={`- ${project.replaceAll('_', ' ')}`} />
                                     </ListItem>
                                 </Link>
                             ))}

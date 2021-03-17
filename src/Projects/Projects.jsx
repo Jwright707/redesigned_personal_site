@@ -14,6 +14,7 @@ const mapHelper = {
     Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image',
     Selenium_Testing: 'https://jwright-images.s3-us-west-1.amazonaws.com/Cool+Selenium+drawing.png',
     "Dotty_(chatbot)": 'https://jwright-images.s3-us-west-1.amazonaws.com/Chatbot+Logo.png',
+    "E_Taxes_&_Services": 'https://jwright-images.s3-us-west-1.amazonaws.com/pexels-nataliya-vaitkevich-6863250.jpg',
 }
 
 export default function Projects(){
@@ -74,7 +75,7 @@ export default function Projects(){
                         <Typography className={classes.rightSideTitle}>
                             {selectedProject.project_name}
                         </Typography>
-                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replace('_', ' ')}`} className={classes.dashboardImage}/>
+                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
                     </Grid>
                     <Grid item container style={{marginTop: '-7vw', zIndex: 9999}} justify={'center'} alignItems={'flex-end'} xs={12}>
                         <KeyboardArrowDownIcon
@@ -117,7 +118,7 @@ export default function Projects(){
                         <Typography className={classes.rightSideTitle}>
                             {selectedProject.project_name}
                         </Typography>
-                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replace('_', ' ')}`} className={classes.dashboardImage}/>
+                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
                     </Grid>
                 }
             </Grid>

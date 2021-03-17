@@ -27,6 +27,7 @@ export const projectStyles = (theme, layoutChange) => ({
         fontFamily: sourceCodePro,
         color: 'black',
         margin: `100px 0 0 0`,
+        textAlign: 'center',
         [theme.breakpoints.up('xl')]: {
             fontSize: '80px',
         },

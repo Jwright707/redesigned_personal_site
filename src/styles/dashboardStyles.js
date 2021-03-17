@@ -30,6 +30,8 @@ export const dashboardStyles = (theme, layoutChange) => ({
         fontFamily: sourceCodePro,
         color: 'white',
         margin: `100px 0 0 0`,
+
+        textAlign: 'center',
         [theme.breakpoints.up('xl')]: {
             fontSize: '80px',
         },

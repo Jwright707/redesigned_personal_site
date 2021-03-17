@@ -138,19 +138,20 @@ export default function Dashboard(props){
                                 Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image',
                                 Selenium_Testing: 'https://jwright-images.s3-us-west-1.amazonaws.com/Cool+Selenium+drawing.png',
                                 "Dotty_(chatbot)": 'https://jwright-images.s3-us-west-1.amazonaws.com/Chatbot+Logo.png',
+                                "E_Taxes_&_Services": 'https://jwright-images.s3-us-west-1.amazonaws.com/Screenshot+2021-03-16+171058.png',
                             }
                             return (
                                 <Grid item key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
                                     <Grid item xs={12}>
                                         <Typography className={classes.eachProjectTitle}>
-                                            {project.replace('_', " ")}
+                                            {project.replaceAll('_', " ")}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Tooltip TransitionComponent={Zoom} arrow title={"Learn More"}>
                                             <img src={mapHelper[project]}
                                                  className={classes.eachProjectImage}
-                                                 alt={project.replace('_', " ")}
+                                                 alt={project.replaceAll('_', " ")}
                                                  onClick={() => {
                                                      updateProjectSelected(project, dispatch)
                                                      window.scrollTo(0, 0)
