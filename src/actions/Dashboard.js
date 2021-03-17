@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {isLoading} from "./Loading"
+import {isLoading} from "./Loading_1"
 export const FETCH_DASHBOARD_DATA = 'FETCH_DASHBOARD_DATA';
 export const UPDATE_PROJECT_SELECTED = 'UPDATE_PROJECT_SELECTED';
 

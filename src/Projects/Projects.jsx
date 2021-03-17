@@ -35,7 +35,7 @@ export default function Projects(){
     const {topArrow, bottomArrow} = useSelector(state => state.app)
     const classes = makeStyles(theme => projectStyles(theme, layoutChange))()
     const selectedProject = objectFormatter[`${projectedSelected}`] || objectFormatter[projectList[0]]
-    const tabFormat = selectedProject?.project_name
+    const tabFormat = selectedProject?.["project_name"]
         ?.toLowerCase()
         ?.split(' ')
         ?.map(character => character?.charAt(0)?.toUpperCase()+character?.slice(1))
@@ -73,7 +73,7 @@ export default function Projects(){
                 <Fragment>
                     <Grid item container alignItems={'flex-start'} justify={'center'} xs={layoutChange ? 12 : 6} className={classes.rightSideDashboardContainer}>
                         <Typography className={classes.rightSideTitle}>
-                            {selectedProject.project_name}
+                            {selectedProject['project_name']}
                         </Typography>
                         <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
                     </Grid>
@@ -95,7 +95,7 @@ export default function Projects(){
                     </Grid>
                     <Grid container direction={'column'} justify={'flex-end'} alignItems={'center'}>
                         <Grid item style={{zIndex: 2}}>
-                            {!["Selenium_Testing", "Dotty_(chatbot)"].includes(projectedSelected) && <a href={`${selectedProject.application_url}`}
+                            {!["Selenium_Testing", "Dotty_(chatbot)"].includes(projectedSelected) && <a href={`${selectedProject?.["application_url"]}`}
                                 target={'_blank'}
                                 className={classes.leftSideDescription}
                                 style={{whiteSpace: "nowrap", textDecoration: 'none', color: 'black'}}
@@ -116,7 +116,7 @@ export default function Projects(){
                 {!layoutChange &&
                     <Grid item container alignItems={'flex-start'} justify={'center'} xs={6} className={classes.rightSideDashboardContainer}>
                         <Typography className={classes.rightSideTitle}>
-                            {selectedProject.project_name}
+                            {selectedProject?.["project_name"]}
                         </Typography>
                         <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
                     </Grid>
@@ -133,18 +133,19 @@ export default function Projects(){
                 <Grid item container direction={'column'} justify={'flex-start'} alignItems={'flex-start'} className={classes.bottomSection}>
                         <Grid item container justify={'center'} alignItems={'flex-start'} xs={12}>
                             <Typography className={classes.leftSideDescription2}>
-                                <b>Developer Role: </b> {selectedProject.developer_role}
+                                <b>Developer Role: </b> {selectedProject?.["developer_role"]}
                             </Typography>
                         </Grid>
                         <Grid item container justify={'center'} alignItems={'flex-start'} xs={12} style={{paddingTop:40}}>
                             <Typography className={classes.leftSideDescription2}>
-                                <b>Structure Overview: </b> {selectedProject.structure_overview}
+                                <b>Structure Overview: </b> {selectedProject?.["structure_overview"]}
                             </Typography>
                             {projectedSelected === 'Food_Backpack' && (
                                 <a className={classes.viewStructure}
                                    href={"https://jwright-images.s3-us-west-1.amazonaws.com/FoodBackpack.png"}
                                    download="Food Backpack Structure"
                                    target={'_blank'}
+                                   rel="noopener noreferrer"
                                 >
                                     <b>View Structure</b>
                                 </a>
@@ -154,6 +155,8 @@ export default function Projects(){
                                    href={"https://jwright-images.s3-us-west-1.amazonaws.com/chatbot_diagram.png"}
                                    download="Dotty_(chatbot) Structure"
                                    target={'_blank'}
+                                   rel="noopener noreferrer"
+
                                 >
                                     <b>View Structure</b>
                                 </a>

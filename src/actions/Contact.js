@@ -1,5 +1,4 @@
 import axios from "axios";
-import {toast} from "react-toastify";
 
 export const EMAIL_RESPONSE = 'EMAIL_RESPONSE';
 export const RESET_EMAIL_RESPONSE = 'RESET_EMAIL_RESPONSE';

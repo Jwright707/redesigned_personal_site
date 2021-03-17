@@ -39,7 +39,7 @@ export default function Navbar(){
     const dispatch = useDispatch();
     useEffect(() => {
         updateNavbar(false, dispatch)
-    }, [projectedSelected])
+    }, [projectedSelected, dispatch])
     return(
         <ThemeProvider theme={theme}>
             <Drawer anchor={"left"}

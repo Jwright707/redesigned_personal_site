@@ -1,6 +1,6 @@
 import {
     IS_LOADING
-} from "../actions/Loading"
+} from "../actions/Loading_1"
 
 const initialState = {
     loading: false

@@ -49,7 +49,7 @@ export default function Dashboard(props){
     useEffect(() => {
         updateProjectSelected('', dispatch)
         document.title = 'Home | Joshua Wright'
-    }, [])
+    }, [dispatch])
     return(
         <Fragment>
             {layoutChange &&
