@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {navyBlue} from "../styles/globalStyles";
 import Tooltip from '@material-ui/core/Tooltip';
 import {updateProjectSelected} from "../actions/Dashboard";
+import {dashboardMapHelper} from "../helpers/mapHelper";
 
 export default function Dashboard(props){
     const {history} = props;
@@ -132,14 +133,6 @@ export default function Dashboard(props){
                     </Grid>
                     <Grid container>
                         {projectList.map((project, index) => {
-                            const mapHelper = {
-                                Food_Backpack: 'https://jwright-images.s3-us-west-1.amazonaws.com/foodbackpack_logo.png',
-                                Trip_Quest: 'https://jwright-images.s3-us-west-1.amazonaws.com/lake-between-1337608.jpg',
-                                Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image',
-                                Selenium_Testing: 'https://jwright-images.s3-us-west-1.amazonaws.com/Cool+Selenium+drawing.png',
-                                "Dotty_(chatbot)": 'https://jwright-images.s3-us-west-1.amazonaws.com/Chatbot+Logo.png',
-                                "E_Taxes_&_Services": 'https://jwright-images.s3-us-west-1.amazonaws.com/Screenshot+2021-03-16+171058.png',
-                            }
                             return (
                                 <Grid item key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
                                     <Grid item xs={12}>
@@ -149,7 +142,7 @@ export default function Dashboard(props){
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Tooltip TransitionComponent={Zoom} arrow title={"Learn More"}>
-                                            <img src={mapHelper[project]}
+                                            <img src={dashboardMapHelper[project]}
                                                  className={classes.eachProjectImage}
                                                  alt={project.replaceAll('_', " ")}
                                                  onClick={() => {

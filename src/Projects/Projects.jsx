@@ -6,16 +6,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import {navyBlue} from "../styles/globalStyles";
 import {makeStyles} from "@material-ui/core/styles";
 import {projectStyles} from "../styles/projectStyles";
-
-
-const mapHelper = {
-    Food_Backpack: 'https://jwright-images.s3-us-west-1.amazonaws.com/foodbackpack_logo.png',
-    Trip_Quest: 'https://jwright-images.s3-us-west-1.amazonaws.com/lake-between-1337608.jpg',
-    Autobiographical: 'https://jwright-images.s3-us-west-1.amazonaws.com/autobiographical-image',
-    Selenium_Testing: 'https://jwright-images.s3-us-west-1.amazonaws.com/Cool+Selenium+drawing.png',
-    "Dotty_(chatbot)": 'https://jwright-images.s3-us-west-1.amazonaws.com/Chatbot+Logo.png',
-    "E_Taxes_&_Services": 'https://jwright-images.s3-us-west-1.amazonaws.com/pexels-nataliya-vaitkevich-6863250.jpg',
-}
+import {projectMapHelper} from "../helpers/mapHelper";
 
 export default function Projects(){
     const [layoutChange, setLayoutChange] = useState(window.innerWidth < 960)
@@ -66,7 +57,6 @@ export default function Projects(){
     useEffect(() => {
       document.title = `${tabFormat} | Joshua Wright`
     })
-
     return(
         <Grid container>
             {layoutChange &&
@@ -75,7 +65,7 @@ export default function Projects(){
                         <Typography className={classes.rightSideTitle}>
                             {selectedProject['project_name']}
                         </Typography>
-                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
+                        <img src={projectMapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
                     </Grid>
                     <Grid item container style={{marginTop: '-7vw', zIndex: 9999}} justify={'center'} alignItems={'flex-end'} xs={12}>
                         <KeyboardArrowDownIcon
@@ -95,14 +85,16 @@ export default function Projects(){
                     </Grid>
                     <Grid container direction={'column'} justify={'flex-end'} alignItems={'center'}>
                         <Grid item style={{zIndex: 2}}>
-                            {!["Selenium_Testing", "Dotty_(chatbot)"].includes(projectedSelected) && <a href={`${selectedProject?.["application_url"]}`}
-                                target={'_blank'}
-                                className={classes.leftSideDescription}
-                                style={{whiteSpace: "nowrap", textDecoration: 'none', color: 'black'}}
-                                rel="noopener noreferrer"
-                            >
-                                Visit Website
-                            </a>}
+                            {!["Selenium_Testing", "Dotty_(chatbot)", "Rally_Data_Comparison"].includes(projectedSelected) &&
+                                <a href={`${selectedProject?.["application_url"]}`}
+                                    target={'_blank'}
+                                    className={classes.leftSideDescription}
+                                    style={{whiteSpace: "nowrap", textDecoration: 'none', color: 'black'}}
+                                    rel="noopener noreferrer"
+                                >
+                                    Visit Website
+                                </a>
+                            }
                         </Grid>
                         <Grid item style={{opacity: !layoutChange ? 1 : 0}}>
                             <KeyboardArrowDownIcon
@@ -118,7 +110,7 @@ export default function Projects(){
                         <Typography className={classes.rightSideTitle}>
                             {selectedProject?.["project_name"]}
                         </Typography>
-                        <img src={mapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
+                        <img src={projectMapHelper[projectedSelected]} alt={`${projectedSelected.replaceAll('_', ' ')}`} className={classes.dashboardImage}/>
                     </Grid>
                 }
             </Grid>
