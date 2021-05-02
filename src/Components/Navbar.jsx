@@ -75,15 +75,6 @@ export default function Navbar(){
                             ))}
                         </List>
                     </Collapse>
-                    {/*<Link to={'/contact'} style={{textDecoration:'none', color: 'black'}}>*/}
-                    {/*    <ListItem button key={'Contact Me'} onClick={() => {*/}
-                    {/*        updateNavbar(false, dispatch)*/}
-                    {/*        setOpenProjects(false)*/}
-                    {/*        window.scrollTo(0, 0);*/}
-                    {/*    }}>*/}
-                    {/*        <ListItemText primary={'Contact Me'}/>*/}
-                    {/*    </ListItem>*/}
-                    {/*</Link>*/}
                 </List>
             </Drawer>
         </ThemeProvider>

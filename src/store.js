@@ -3,7 +3,6 @@ import thunk from 'redux-thunk'
 import app from "./reducer/App";
 import dashboard from "./reducer/Dashboard";
 import content from './reducer/Content';
-import contact from './reducer/Contact';
 import loading from "./reducer/Loading"
 
 function saveToSessionStorage(state){
@@ -34,7 +33,6 @@ const reducer = combineReducers({
     app,
     dashboard,
     content,
-    contact,
     loading,
 })
 

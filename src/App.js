@@ -11,7 +11,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {bottomArrowUpdate, topArrowUpdate, updateNavbar} from "./actions/App";
 import Projects from "./Projects/Projects";
 import Navbar from "./Components/Navbar";
-// import Contact from "./Contact/Contact";
 import {fetchProjectData} from "./actions/Content";
 import {fetchDashboardData} from "./actions/Dashboard";
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -65,7 +64,6 @@ export default function App() {
                   <Switch>
                       <Route exact path='/' component={Dashboard} history={history}/>
                       <Route exact path='/projects' component={Projects} history={history}/>
-                      {/*<Route exact path='/contact' component={Contact} history={history}/>*/}
                   </Switch>
                   <LinkIcons/>
               </Fragment>
