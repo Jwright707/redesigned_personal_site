@@ -117,6 +117,7 @@ export const projectStyles = (theme, layoutChange) => ({
     },
     bottomSection: {
         paddingLeft: 30,
+        flexWrap: 'nowrap',
         [theme.breakpoints.down('md')]: {
             paddingLeft: 0,
 

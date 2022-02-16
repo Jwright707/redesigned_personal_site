@@ -94,12 +94,14 @@ export const dashboardStyles = (theme, layoutChange) => ({
         }
     },
     eachProjectContainer: {
-        paddingTop: 50
+        paddingTop: 50,
+        flexWrap: 'nowrap'
     },
     eachSkillContainer: {
         paddingTop: 50,
         paddingLeft: 50,
         paddingRight: 50,
+        flexWrap: 'nowrap',
         [theme.breakpoints.down('sm')]: {
             paddingLeft: 50,
         }

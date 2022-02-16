@@ -134,7 +134,7 @@ export default function Dashboard(props){
                     <Grid container>
                         {projectList.map((project, index) => {
                             return (
-                                <Grid item key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
+                                <Grid key={index} container sm={6} md={6} lg={6} justify={'center'} alignItems={'center'} direction={'column'} className={classes.eachProjectContainer}>
                                     <Grid item xs={12}>
                                         <Typography className={classes.eachProjectTitle}>
                                             {project.replaceAll('_', " ")}

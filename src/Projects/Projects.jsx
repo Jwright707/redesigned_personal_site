@@ -57,6 +57,7 @@ export default function Projects(){
     useEffect(() => {
       document.title = `${tabFormat} | Joshua Wright`
     })
+    console.log('projectedSelected',projectedSelected)
     return(
         <Grid container>
             {layoutChange &&
